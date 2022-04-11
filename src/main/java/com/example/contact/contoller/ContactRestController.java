@@ -63,12 +63,17 @@ public class ContactRestController {
 	
 	@DeleteMapping("/contacts/{id}")
 	public String deleteContact(@PathVariable("id") Long id) {
-		Optional<Contact> contactOptional = contactService.deleteContactById(id);
+		Optional<Contact> contactOptional = contactService.getContactById(id);
 		if(contactOptional.isPresent()) {
-			return "" ;
+
+			Contact conatactTodelete = contactOptional.get();
+			conatactTodelete.setDeleted(true);
+			contactService.saveContact(contactOptional.get());
+			
+			return "contact deleted " ;
 		}
 		else {
-			return null;
+			return "No contact present with id " + id;
 		}
 
 	}
