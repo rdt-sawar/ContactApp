@@ -25,9 +25,11 @@ public class Contact {
 	@GeneratedValue
 	Long contactId;
 	
-	String name;
+	String contactName;
 	
-	String contactNo;
+	String contactNumber;
+	
+	String contactEmail;
 	
 	@Column(updatable = false)
 	@CreationTimestamp
@@ -47,20 +49,28 @@ public class Contact {
 		this.contactId = contactId;
 	}
 
-	public String getName() {
-		return name;
+	public String getContactName() {
+		return contactName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
 	}
 
-	public String getContactNo() {
-		return contactNo;
+	public String getContactNumber() {
+		return contactNumber;
 	}
 
-	public void setContactNo(String contactNo) {
-		this.contactNo = contactNo;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public String getContactEmail() {
+		return contactEmail;
+	}
+
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
 	}
 
 	public LocalDate getCreatedDate() {
@@ -87,15 +97,5 @@ public class Contact {
 		this.isDeleted = isDeleted;
 	}
 
-	@Override
-	public String toString() {
-		return "Contact [contactId=" + contactId + ", name=" + name + ", contactNo=" + contactNo + ", createdDate="
-				+ createdDate + ", updatedDate=" + updatedDate + ", isDeleted=" + isDeleted + "]";
-	}
-	
-	
-	
-	
-	
 
 }

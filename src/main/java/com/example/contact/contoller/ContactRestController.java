@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,13 +29,12 @@ public class ContactRestController {
 	AppProperties appProperties;
 	
 	
-	
 	@GetMapping("/contacts")
 	public List<Contact> getContacts() {
 		return contactService.getContacts();
 	}
 	
-	@GetMapping("/contacts/{id}")
+	@GetMapping("/contact/{id}")
 	public Contact getContactById(@PathVariable("id") Long id) {
 		Optional<Contact> contactOptional = contactService.getContactById(id);
 		if(contactOptional.isPresent()) {
@@ -46,7 +46,7 @@ public class ContactRestController {
 
 	}
 	
-	@PostMapping("/contacts")
+	@PostMapping("/contact")
 	public String saveContacts(@RequestBody Contact contact) {
 		
 		Map<String, String> messages = appProperties.getMessages();
@@ -60,8 +60,7 @@ public class ContactRestController {
 		}
 	}
 	
-	
-	@DeleteMapping("/contacts/{id}")
+	@DeleteMapping("/contact/{id}")
 	public String deleteContact(@PathVariable("id") Long id) {
 		Optional<Contact> contactOptional = contactService.getContactById(id);
 		if(contactOptional.isPresent()) {
